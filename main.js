@@ -1,5 +1,16 @@
 import users from './users.js'; // добавляем массив пользователей
 
+let tableInfo = [];
+for (let i = 0; i < users.length; i++) {
+	let user = {
+		'First name': users[i]['name']['firstName'],
+		'Last name': users[i]['name']['lastName'],
+		'About': users[i]['about'],
+		'Eye color': users[i]['eyeColor']
+	};
+	tableInfo.push(user);
+} // создали массив только с нужными данными
+
 let div = document.createElement('div');				// создаём
 let table = document.createElement('table');		// элементы
 let tableHeader = document.createElement('tr');	// страницы
@@ -15,7 +26,6 @@ for (let i = 0; i < 5; i++) {
 	tableHeader.append(th);
 } // наполняем заголовок таблицы ключами объектов массива пользователей
 
-
 for (let i = 0; i < users.length; i++) {
 	let tr = document.createElement('tr');
 	for (let j = 0; j < 5; j++) {
@@ -27,3 +37,9 @@ for (let i = 0; i < users.length; i++) {
 	}
 	table.append(tr);
 } // наполняем таблицу данными пользователей
+
+table.style.borderCollapse = 'collapse';
+let tableData = document.querySelectorAll('.cell');
+tableData.forEach(el => {
+	el.style.border = '1px solid black';
+}); // нарисовали границы таблице дл удобства
